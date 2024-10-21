@@ -1,14 +1,17 @@
 {{config(materialized='table', schema='transforming')}}
 
-select customerid,
+select 
+
+customerid,
 companyname,
 contactname,
 city,
 country,
-divisionid,
+d.divisionname as divisionname,
 address,
 iff(fax='','NA',fax) as fax,
 phone,
-postalcode,
+postalcode, 
 case when stateprovince='' then 'NA' else stateprovince end as stateprovince 
-from {{ref('stg_customers')}}
+from {{ref('stg_customers')}} as c inner join {{ref('lkp_division')}} as d 
+on c.divisionid = d.divisionid

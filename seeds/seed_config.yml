@@ -4,3 +4,7 @@ seeds:
   - name: lkp_division
     config:
       schema: lookup
+  
+  - name: lkp_categories
+    config:
+      schema: lookup
