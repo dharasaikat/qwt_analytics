@@ -13,5 +13,5 @@ iff(fax='','NA',fax) as fax,
 phone,
 postalcode, 
 case when stateprovince='' then 'NA' else stateprovince end as stateprovince 
-from {{ref('stg_customers')}} as c inner join {{ref('lkp_division')}} as d 
+from {{ref('stg_customers')}} as c inner join {{ref('lkp_divisions')}} as d 
 on c.divisionid = d.divisionid
