@@ -1,4 +1,4 @@
-{{config(materialized='table', schema='transforming')}}
+{{config(materialized='table', schema='transforming', transient=false, post_hook= 'create or replace table transforming.trf_customers_copy clone {{this}};', pre_hook='use warehouse dbt_queries;')}}
 
 select 
 
