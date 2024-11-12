@@ -3,20 +3,26 @@ version: 2
 models:
 
   - name: stg_customers
+    description: "{{ doc('customers') }}"
     columns:
       - name: customerid
+        description:  Unique id to represent each customer
         tests:
           - unique
           - not_null
+          - is_even
 
   - name: stg_orders
+    description:  Order data captured by transaction systems
     columns:
       - name: orderid
+        description:  Unique id to represent transaction
         tests:
           - unique
           - not_null
 
       - name: customerid
+        description:  Customer id who made some transaction
         tests:
           - not_null
           - relationships:

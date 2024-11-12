@@ -2,6 +2,7 @@ version: 2
 
 sources:
   - name: qwt_raw
+    description:  source configuration for raw tables to be loaded
     database: qwt_analytics
     schema: raw
     tables:

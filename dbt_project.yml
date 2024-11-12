@@ -28,6 +28,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 vars:
   v_city: "'Berlin'"
 
+  dq_tools_enable_store_test_results: True
+
+
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -39,8 +42,8 @@ vars:
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 
-on-run-start: "use warehouse compute_wh; alter session set timezone = 'Asia/Kolkata';"
-on-run-end: "alter session set timezone = 'America/Los_Angeles';"
+on-run-start: "alter session set timezone = 'Asia/Kolkata'"
+on-run-end: "alter session set timezone = 'America/Los_Angeles'; {{ dq_tools.store_test_results(results) }}"
 
 models:
   my_new_project:
@@ -51,3 +54,7 @@ models:
 
   +post-hook: 
     - "update qwt_analytics.auditing.models_audit set end_time= current_timestamp, duration=datediff('second',start_time,current_timestamp) where modelname='{{this}}' and end_time is null;"
+
+
+  dq_tools:
+    +schema: auditing
