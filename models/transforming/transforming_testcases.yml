@@ -3,6 +3,8 @@ version: 2
 models:
 
   - name: trf_shipments
+    config:
+      schema: "{{env_var('DBT_TRF_SCHEMA', 'transforming') }}"
     columns:
       - name: status
         tests:
