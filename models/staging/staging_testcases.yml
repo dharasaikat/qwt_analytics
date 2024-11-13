@@ -4,6 +4,8 @@ models:
 
   - name: stg_customers
     description: "{{ doc('customers') }}"
+    config:
+      schema: "{{env_var('DBT_STAGESCHEMA', 'STAGING') }}"
     columns:
       - name: customerid
         description:  Unique id to represent each customer
@@ -14,6 +16,8 @@ models:
 
   - name: stg_orders
     description:  Order data captured by transaction systems
+    config:
+      schema: "{{env_var('DBT_STAGESCHEMA', 'STAGING') }}"
     columns:
       - name: orderid
         description:  Unique id to represent transaction
@@ -23,6 +27,8 @@ models:
 
       - name: customerid
         description:  Customer id who made some transaction
+        config:
+          schema: "{{env_var('DBT_STAGESCHEMA', 'STAGING') }}"
         tests:
           - not_null
           - relationships:

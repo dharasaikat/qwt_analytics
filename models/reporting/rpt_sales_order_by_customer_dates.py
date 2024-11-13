@@ -12,7 +12,7 @@ def avg(x,y):
 
 def model(dbt, sesssion):
 
-    dbt.config(materialized='table' , schema='reporting', packages=['holidays'])
+    dbt.config(materialized='table' , packages=['holidays'])
 
     dim_customers_df=dbt.ref('dim_customers')
     fct_orders_df=dbt.ref('fact_orders')

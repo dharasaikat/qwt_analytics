@@ -3,8 +3,8 @@ version: 2
 sources:
   - name: qwt_raw
     description:  source configuration for raw tables to be loaded
-    database: qwt_analytics
-    schema: raw
+    database: {{env_var('DBT_SOURCE_DB','qwt_analytics')}}
+    schema: {{env_var('DBT_SOURCE_SCHEMA','raw')}}
     tables:
       - name: customers
       - name: products

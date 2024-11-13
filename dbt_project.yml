@@ -27,7 +27,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 vars:
   v_city: "'Berlin'"
-
+  bdt_dq_tool_schema: "{{env_var('DBT_AUDIT_SCHEMA','auditing')}}"
   dq_tools_enable_store_test_results: True
 
 
@@ -50,11 +50,11 @@ models:
     # Applies to all files under models/example/
   
   +pre-hook: 
-    - "insert into qwt_analytics.auditing.models_audit(modelname,start_time, end_time, duration) values ('{{this}}', current_timestamp, null, null);"
+    - "insert into {{env_var('DBT_SOURCE_DB','qwt_analytics')}}.{{env_var('DBT_AUDIT_SCHEMA','auditing')}}.models_audit(modelname,start_time, end_time, duration) values ('{{this}}', current_timestamp, null, null);"
 
   +post-hook: 
-    - "update qwt_analytics.auditing.models_audit set end_time= current_timestamp, duration=datediff('second',start_time,current_timestamp) where modelname='{{this}}' and end_time is null;"
+    - "update {{env_var('DBT_SOURCE_DB','qwt_analytics')}}.{{env_var('DBT_AUDIT_SCHEMA','auditing')}}.models_audit set end_time= current_timestamp, duration=datediff('second',start_time,current_timestamp) where modelname='{{this}}' and end_time is null;"
 
 
   dq_tools:
-    +schema: auditing
+    +schema: "{{env_var('DBT_AUDIT_SCHEMA','auditing')}}"

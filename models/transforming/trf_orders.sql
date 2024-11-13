@@ -1,4 +1,4 @@
-{{config(materialized='table', schema='transforming')}}
+{{config(materialized='table', schema = env_var('DBT_TRF_SCHEMA','transforming'))}}
 
 select
 
