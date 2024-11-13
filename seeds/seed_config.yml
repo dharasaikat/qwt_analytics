@@ -3,12 +3,12 @@ version: 2
 seeds:
   - name: lkp_divisions
     config:
-      schema: {{env_var('DBT_LKP_SCHEMA','lookup')}}
+      schema: lookup
   
   - name: lkp_categories
     config:
-      schema: {{env_var('DBT_LKP_SCHEMA','lookup')}}
+      schema: lookup
 
   - name: lkp_shippers
     config:
-      schema: {{env_var('DBT_LKP_SCHEMA','lookup')}}
+      schema: lookup
