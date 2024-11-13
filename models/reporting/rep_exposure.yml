@@ -9,7 +9,7 @@ exposures:
     description: report shows top 10 cities by sales
  
     depends_on:
-        - ref("fct_orders")
+        - ref("fact_orders")
         - ref("dim_customers")
  
     owner:
