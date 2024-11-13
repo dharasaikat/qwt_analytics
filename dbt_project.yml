@@ -27,7 +27,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 vars:
   v_city: "'Berlin'"
-  bdt_dq_tool_schema: "{{env_var('DBT_AUDIT_SCHEMA','auditing')}}"
+  dbt_dq_tool_schema: "{{env_var('DBT_AUDIT_SCHEMA','auditing')}}"
   dq_tools_enable_store_test_results: True
 
 
